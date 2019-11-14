@@ -27,21 +27,24 @@ namespace breaking_solid
             Health = 20 + might;
         }
 
-        public string GetNameAndClass()
+        public void DisplayDetails()
         {
             switch(playerClass)
             {
                 case PlayerClass.Fighter:
-                    return $"{PlayerName} is a tough Fighter";
-            
+                    Console.WriteLine($"{PlayerName} is a tough Fighter"); 
+                    break;           
                 case PlayerClass.Wizard:
-                    return $"{PlayerName} is a magical Wizard";
-
+                    Console.WriteLine($"{PlayerName} is a magical Wizard");
+                    break; 
                 case PlayerClass.Rogue:
-                    return $"{PlayerName} is a sneaky Rogue";
-
-                default: return $"{PlayerName} is not a recgnosed class";
+                    Console.WriteLine($"{PlayerName} is a sneaky Rogue");
+                    break; 
+                default: Console.WriteLine($"{PlayerName} is not a recognized class");
+                break; 
             } 
+            Console.WriteLine($"Might: {Might} | Intellect: {Intellect} | Speed: {Speed}");
+            Console.WriteLine($"Armour: {Armour} | Health: {Health}");
         }
 
         public void Attack(Player target)
@@ -50,14 +53,23 @@ namespace breaking_solid
             Console.WriteLine($"Attacking {target.PlayerName} for {sword.Damage} damage");
         }
 
-        public void CastSpell()
+        public void CastAttackSpell(Player target)
         {
-            Console.WriteLine("Casting Spell");
+            int damage = (Intellect/10);
+            target.TakeDamage(damage);
+            Console.WriteLine($"Attacking {target.PlayerName} for {damage} damage");
         }
+
+        public void CastDefensiveSpell()
+        {
+            Armour += 1;
+            Console.WriteLine("Casting a defensive Spell");
+        }
+
 
         public void Sneak()
         {
-            Console.WriteLine("I'm snaeking");
+            Console.WriteLine("I'm sneaking");
         }
 
         public void TakeDamage(int amount)

@@ -5,15 +5,26 @@ namespace breaking_solid
     public class Player
     {
         private readonly PlayerClass playerClass;
-        private readonly string playerName;
+        public string PlayerName { get; }
+
+        private Sword sword = new Sword(5);
 
         public int Armour { get; set; }
         public int Health { get; set; }
 
-        public Player(PlayerClass playerClass, string playerName)
+        public int Might { get; set; }
+        public int Intellect { get; set; }
+        public int Speed {get; set; }
+
+        public Player(PlayerClass playerClass, string playerName, int might, int intellect, int speed)
         {
             this.playerClass = playerClass;
-            this.playerName = playerName;
+            PlayerName = playerName;
+            Might = might;
+            Intellect = intellect;
+            Speed = speed;
+            Armour = 1;
+            Health = 20 + might;
         }
 
         public string GetNameAndClass()
@@ -21,17 +32,39 @@ namespace breaking_solid
             switch(playerClass)
             {
                 case PlayerClass.Fighter:
-                    return $"{playerName} is a tough Fighter";
+                    return $"{PlayerName} is a tough Fighter";
             
                 case PlayerClass.Wizard:
-                    return $"{playerName} is a magical Wizard";
+                    return $"{PlayerName} is a magical Wizard";
 
                 case PlayerClass.Rogue:
-                    return $"{playerName} is a sneaky Rogue";
+                    return $"{PlayerName} is a sneaky Rogue";
 
-                default: return $"{playerName} is not a recgnosed class";
-            } //This violates the Open Closed Principle as we need to add extra cases if we create a new Playerclass type in the future such as Bard
+                default: return $"{PlayerName} is not a recgnosed class";
+            } 
+        }
 
+        public void Attack(Player target)
+        {
+            target.TakeDamage(sword.Damage);
+            Console.WriteLine($"Attacking {target.PlayerName} for {sword.Damage} damage");
+        }
+
+        public void CastSpell()
+        {
+            Console.WriteLine("Casting Spell");
+        }
+
+        public void Sneak()
+        {
+            Console.WriteLine("I'm snaeking");
+        }
+
+        public void TakeDamage(int amount)
+        {
+            int damage = amount-Armour;
+            Health -= damage;
+            Console.WriteLine($"Taken {damage} damage");
         }
 
     }

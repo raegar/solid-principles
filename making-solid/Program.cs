@@ -6,7 +6,7 @@ namespace making_solid
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Breaking SOLID!");
+            Console.WriteLine("Making SOLID!");
             PlayerManagement playerManager = new PlayerManagement();
 
             Fighter player1 = new Fighter("Raegar", 14, 3, 7);

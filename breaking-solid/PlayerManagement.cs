@@ -18,6 +18,7 @@ namespace breaking_solid
             {
                 player.DisplayDetails();
             }
+            Console.WriteLine();
         }
 
     }

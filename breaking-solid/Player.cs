@@ -45,38 +45,39 @@ namespace breaking_solid
             } 
             Console.WriteLine($"Might: {Might} | Intellect: {Intellect} | Speed: {Speed}");
             Console.WriteLine($"Armour: {Armour} | Health: {Health}");
+            Console.WriteLine();
         }
 
         public void Attack(Player target)
         {
+            Console.WriteLine($"{PlayerName} is attacking {target.PlayerName} for {sword.Damage} damage");
             target.TakeDamage(sword.Damage);
-            Console.WriteLine($"Attacking {target.PlayerName} for {sword.Damage} damage");
         }
 
         public void CastAttackSpell(Player target)
         {
             int damage = (Intellect/10);
+            Console.WriteLine($"{PlayerName} is attacking {target.PlayerName} for {damage} damage");
             target.TakeDamage(damage);
-            Console.WriteLine($"Attacking {target.PlayerName} for {damage} damage");
         }
 
         public void CastDefensiveSpell()
         {
+            Console.WriteLine($"{PlayerName} is casting a defensive Spell");
             Armour += 1;
-            Console.WriteLine("Casting a defensive Spell");
         }
 
 
         public void Sneak()
         {
-            Console.WriteLine("I'm sneaking");
+            Console.WriteLine($"{PlayerName} is sneaking");
         }
 
         public void TakeDamage(int amount)
         {
             int damage = amount-Armour;
             Health -= damage;
-            Console.WriteLine($"Taken {damage} damage");
+            Console.WriteLine($"{PlayerName} has taken {damage} damage");
         }
 
     }
